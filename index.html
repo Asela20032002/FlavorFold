@@ -32,7 +32,96 @@
     </style>
 </head>
 
-<body>
+
+    <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary-custom" href="index.html">FlavorFold</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="recipes.html">Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="submit.html">Submit Recipe</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center fade-in">
+        <div class="container">
+            <div class="hero-content shadow-sm">
+                <h1 class="display-3 fw-bold mb-3">Cook Together. <br><span class="text-primary-custom">Eat
+                        Together.</span></h1>
+                <p class="lead mb-5 text-muted">Join FlavorFold – the inclusive recipe platform designed for beginners,
+                    families, and everyone in between.</p>
+                <a href="recipes.html" class="btn btn-primary-custom btn-lg">Explore Recipes</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Recipes -->
+    <section class="container mt-5 py-5">
+        <h2 class="text-center fw-bold mb-4">Featured Recipes</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card recipe-card h-100 shadow-sm border-0">
+                    <img src="Food images/stew.png" class="card-img-top" style="height:200px; object-fit:cover;">
+                    <div class="card-body">
+                        <span class="badge bg-secondary-custom mb-2">Vegetarian</span>
+                        <h4 class="fw-bold">Hearty Vegetable Stew</h4>
+                        <p class="text-muted small">A warm, comforting meal perfect for family dinners.</p>
+                        <a href="recipes.html" class="btn btn-sm btn-outline-warning w-100 mt-2">View More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card recipe-card h-100 shadow-sm border-0">
+                    <img src="Food images/quinoa.png" class="card-img-top" style="height:200px; object-fit:cover;">
+                    <div class="card-body">
+                        <span class="badge bg-primary-custom mb-2">High Protein</span>
+                        <h4 class="fw-bold">Protein-Packed Quinoa Bowl</h4>
+                        <p class="text-muted small">Quick, healthy, and energized with plant-based protein.</p>
+                        <a href="recipes.html" class="btn btn-sm btn-outline-warning w-100 mt-2">View More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card recipe-card h-100 shadow-sm border-0">
+                    <img src="Food images/tart.png" class="card-img-top" style="height:200px; object-fit:cover;">
+                    <div class="card-body">
+                        <span class="badge bg-danger mb-2">Dessert</span>
+                        <h4 class="fw-bold">Classic Berry Tart</h4>
+                        <p class="text-muted small">A sweet ending to any perfect gathering.</p>
+                        <a href="recipes.html" class="btn btn-sm btn-outline-warning w-100 mt-2">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="bg-light py-5 mt-5">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">Browse by Category</h2>
+            <div class="d-flex flex-wrap justify-content-center">
+                <a href="recipes.html" class="category-chip">Breakfast</a>
+                <a href="recipes.html" class="category-chip">Lunch</a>
+                <a href="recipes.html" class="category-chip">Dinner</a>
+                <a href="recipes.html" class="category-chip">Desserts</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 text-center border-top mt-5">
+        <p class="text-muted mb-0">&copy; 2025 FlavorFold. All rights reserved.</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
