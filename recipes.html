@@ -31,4 +31,112 @@
     </style>
 </head>
 
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary-custom" href="index.html">FlavorFold</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="recipes.html">Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="submit.html">Submit Recipe</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section text-center fade-in">
+        <div class="container">
+            <div class="hero-content shadow-sm">
+                <h2 class="fw-bold mb-4">Find Your Next Favorite Meal</h2>
+                <div class="search-container mx-auto mt-0 mb-0">
+                    <input type="text" id="recipeSearch" class="form-control form-control-lg shadow-sm"
+                        placeholder="Search for recipes (e.g. Stew, Quinoa, Berry)...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container mt-5">
+
+        <div class="text-center mb-5">
+            <button class="filter-btn active" onclick="filterCategory('All', this)">All</button>
+            <button class="filter-btn" onclick="filterCategory('Vegetarian', this)">Vegetarian</button>
+            <button class="filter-btn" onclick="filterCategory('High Protein', this)">High Protein</button>
+            <button class="filter-btn" onclick="filterCategory('Dessert', this)">Dessert</button>
+        </div>
+
+        <div class="row" id="recipeContainer">
+            <!-- Recipes injected by app-core.js -->
+        </div>
+    </div>
+
+    <!-- Recipe Modal -->
+    <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow" style="border-radius: 20px;">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="recipeModalLabel">Recipe Name</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="recipeModalBody">
+                    <!-- Data injected by app-core.js -->
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-4 text-center border-top mt-5">
+        <p class="text-muted mb-0">&copy; 2025 FlavorFold. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app-core.js"></script>
+    <script>
+        // Local Filter Logic for recipes.html
+        let currentFilter = 'All';
+
+        function filterCategory(category, btn) {
+            currentFilter = category;
+
+            // UI Toggle
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('recipeSearch').value.toLowerCase();
+
+            const filtered = recipes.filter(r => {
+                const matchesCategory = currentFilter === 'All' || r.category === currentFilter;
+                const matchesSearch = r.name.toLowerCase().includes(query) ||
+                    r.ingredients.some(i => i.toLowerCase().includes(query));
+                return matchesCategory && matchesSearch;
+            });
+
+            renderRecipes(filtered);
+        }
+
+        // Live Search
+        document.getElementById('recipeSearch').addEventListener('input', applyFilters);
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRecipes(recipes);
+        });
+    </script>
+</body>
+
+
 </html>
