@@ -40,3 +40,52 @@ const recipes = [
         instructions: "Slowly add broth to toasted rice and mushrooms, stirring constantly until creamy."
     }
 ];
+
+function renderRecipes(filteredList) {
+    const container = document.getElementById('recipeContainer');
+    if (!container) return;
+
+    container.innerHTML = filteredList.map(recipe => `
+        <div class="col-md-4 mb-4 fade-in">
+            <div class="card recipe-card h-100 shadow-sm border-0">
+                <div class="position-relative">
+                    <img src="${recipe.image}" class="card-img-top" style="height:220px; object-fit:cover;">
+                    <div class="position-absolute top-0 end-0 p-2 d-flex flex-column gap-1">
+                        <span class="badge bg-white text-dark opacity-75 shadow-sm">${recipe.category}</span>
+                        <span class="badge ${recipe.difficultyClass} shadow-sm">${recipe.difficulty}</span>
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold mb-3">${recipe.name}</h5>
+                    <button class="btn btn-sm btn-primary-custom mt-auto w-100" onclick="showRecipe(${recipe.id})">View Recipe Details</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function showRecipe(id) {
+    const recipe = recipes.find(r => r.id === id);
+    const modalTitle = document.getElementById('recipeModalLabel');
+    const modalBody = document.getElementById('recipeModalBody');
+
+    if (recipe && modalTitle && modalBody) {
+        modalTitle.innerText = recipe.name;
+        modalBody.innerHTML = `
+        <img src="${recipe.image}" class="img-fluid rounded mb-3 shadow-sm" style="width:100%; height:300px; object-fit:cover;">
+
+        <div class="recipe-content p-2">
+            <h6><strong class="text-primary-custom">Ingredients:</strong></h6>
+            <ul class="mb-4">${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
+
+            <hr>
+
+            <h6><strong class="text-primary-custom">Instructions:</strong></h6>
+            <p class="mb-0 text-muted">${recipe.instructions}</p>
+        </div>
+        `;
+        const myModal = new bootstrap.Modal(document.getElementById('recipeModal'));
+        myModal.show();
+    }
+}
+
